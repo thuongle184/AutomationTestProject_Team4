@@ -38,7 +38,7 @@ public class CustomerDepositTest extends PageProvider{
         getCustomerDepositPage().verifyMessageSuccessfully();
         Thread.sleep(5000);
         getTransaction().navigateTransactionTab();
-        getTransaction().verifySuccessfullyAtTransaction(getCustomerDepositPage().getDateTime());
+        getTransaction().verifySuccessfullyAtTransaction(getCustomerDepositPage().getDateTime(),"deposit");
 
     }
 

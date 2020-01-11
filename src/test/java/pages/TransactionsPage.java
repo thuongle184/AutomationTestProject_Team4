@@ -25,18 +25,20 @@ public class TransactionsPage {
     }
 
 
-    public void verifySuccessfullyAtTransaction(String numberDeposit) throws InterruptedException {
+    public void verifySuccessfullyAtTransaction(String numberDeposit, String messages) throws InterruptedException {
         List<WebElement> listTr = table.findElements(By.tagName("tr"));
         for (int i = 1; i < listTr.size(); i++) {
             List<WebElement> listTd = listTr.get(i).findElements(By.tagName("td"));
-//            System.out.println("ggggggggggggggggg" + listTd.get(1).getText());
+
             if (listTd.get(0).getText().contains(numberDeposit) && listTd.get(1).getText().equals(2000)) {
-                System.out.println("Add deposit successfully !!!");
+                System.out.println("Add" + messages + " successfully !!!");
                 break;
             }
-            System.out.println("Add deposit successfully !!!");
+            System.out.println("Add" + messages + " successfully !!!");
         }
     }
+
+
 
     public void resetTableTransaction(){
         buttonReset.click();

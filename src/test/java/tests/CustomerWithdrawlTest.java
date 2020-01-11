@@ -41,19 +41,22 @@ public class CustomerWithdrawlTest extends PageProvider{
 
     @When("^I click withdrawl submit button$")
     public void clickWithdrawlSubmitButton() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         getCustomerWithdrawlPage().submitWithdrawl();
+        getCustomerWithdrawlPage().getDateTime();
     }
 
     @Then("^I verify that customer withdrawl successfully$")
-    public void withdrawSuccesfully() throws InterruptedException {
-        Thread.sleep(2000);
+    public void verifyWithdrawSuccesfully() throws InterruptedException {
         getCustomerWithdrawlPage().verifyMessageSuccessfully();
+        Thread.sleep(5000);
+        getTransaction().navigateTransactionTab();
+        getTransaction().verifySuccessfullyAtTransaction(getCustomerDepositPage().getDateTime(),"withdrawl");
     }
 
     @Then("^I verify that customer withdrawl unsuccessfully$")
-    public void withdrawunSuccesfully() throws InterruptedException {
-        Thread.sleep(2000);
+    public void verifyWithdrawunSuccesfully() throws InterruptedException {
+        Thread.sleep(3000);
         getCustomerWithdrawlPage().verifyMessageunSuccessfully();
     }
 
