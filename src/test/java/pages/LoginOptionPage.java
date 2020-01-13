@@ -14,6 +14,19 @@ public class LoginOptionPage {
     @FindBy(id = "userSelect")
     WebElement userSelect;
 
+    @FindBy(css = "div.center:nth-child(3) > button:nth-child(1)")
+    WebElement managerLoginButton;
+
+    @FindBy(css = "button.btn-lg:nth-child(1)")
+    WebElement addCustomerButton;
+
+    @FindBy(css = "button.btn:nth-child(2)")
+    WebElement openAccountButton;
+
+    @FindBy(css = "button.btn-lg:nth-child(3)")
+    WebElement customerListButton;
+
+
     public void pressCustomerLoginButton() throws InterruptedException {
         customerLoginButton.click();
         Thread.sleep(1000);
@@ -29,4 +42,17 @@ public class LoginOptionPage {
         }
     }
 
+    public void pressManagerLoginButton() throws InterruptedException {
+        managerLoginButton.click();
+        Thread.sleep(1000);
+    }
+
+    public void showCheckManagerLoginPageResult() {
+        if(addCustomerButton.isDisplayed() && openAccountButton.isDisplayed() && customerListButton.isDisplayed()){
+            System.out.println("Element present");
+        }
+        else{
+            System.out.println("Element not present");
+        }
+    }
 }

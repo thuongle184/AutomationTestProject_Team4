@@ -13,11 +13,12 @@ Feature: Open Account
       | fullname     | currency |  user             |
       | Harry Potter | Pound    | Harry Potter      |
 
-#  Scenario Outline:  Open Account unsucessfully
-#    When I choose account as <fullname> and currency as <currency>
-#    And I click open account
-#    Then I verify that user account is not already opened
-#    Examples:
-#      | fullname     | currency |
-#      | Harry Potter | null     |
-#      | null         | Pound    |
+  Scenario Outline:  Open Account unsucessfully with null user name
+    When I choose account as <fullname> and currency as <currency>
+    And I click open account
+    Then I verify that user account as <user> is not already opened
+    Examples:
+      | fullname            | currency       |  user             |
+#      | Harry Potter        | ---Currency--- |Harry Potter      |
+      |---Customer Name---  |Pound           |---Customer Name---|
+      |---Customer Name---  |---Currency---  |---Customer Name---|

@@ -9,6 +9,6 @@ Feature: Login Options
     When I click customer login button
     Then I verify system navigates to customer login page
 
-#  Scenario: Customer choose bank manager login option successfully
-#    When I click bank manager login button
-#    Then I verify system navigates to manager login page
+  Scenario: Customer choose bank manager login option successfully
+    When I click bank manager login button
+    Then I verify system navigates to manager login page

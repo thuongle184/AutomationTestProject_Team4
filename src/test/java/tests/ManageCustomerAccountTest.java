@@ -20,6 +20,26 @@ public class ManageCustomerAccountTest {
 
     @When("^I type value as (.*) on search box$")
     public void verifySearchBox(String searchValueInput) throws InterruptedException {
-        getManageCustomerAccountPage().checkSearchSuccessfully(searchValueInput);
+        getManageCustomerAccountPage().setSearchValue(searchValueInput);
+    }
+
+    @Then("^I verify that result of value as (.*) is visable on the table$")
+    public void verifySearchSuccessfully(String valueSearch){
+        getManageCustomerAccountPage().checkSearchSuccessfully(valueSearch, true);
+    }
+
+    @When("^I click on title as (.*) to sort$")
+    public void setSortedCollum(String sortedCollum) throws InterruptedException {
+        getManageCustomerAccountPage().setColumnSort(sortedCollum);
+    }
+
+    @Then("^I verify that user account at collumn as (.*) sorted successfully$")
+    public void verifySortSuccessfully(int index){
+        getManageCustomerAccountPage().verifySortResult(true, index);
+    }
+
+    @Then("^I verify that results of value as (.*) is wrong or nothing change$")
+    public void verifySearchUnsuccessfully(String valueSearch){
+        getManageCustomerAccountPage().checkSearchUnsuccessfully(valueSearch, false);
     }
 }

@@ -21,17 +21,15 @@ public class OpenAccountTest extends PageProvider {
     @Then("^I verify that user account as (.*) is already opened$")
     public void verifyUserAlreadyOpen(String userFullName) throws InterruptedException {
         String accountNumber = getCommonPage().getAccountNumber();
-        System.out.println(accountNumber+" hihuihiuhufdhf");
         getManageCustomerAccountPage().clickCustomerTab();
         getManageCustomerAccountPage().checkCustomerAccountInformation(userFullName, accountNumber);
     }
 
-    @Then("^I verify that user account is not already opened$")
+    @Then("^I verify that user account as (.*) is not already opened$")
     public void verifyCustomerAddUnSuccessfully(String fullname) throws InterruptedException {
         Thread.sleep(3000);
-        getOpenAccountPage().clickOpenAccountTab();
-        Thread.sleep(3000);
-        getOpenAccountPage().checkUserInformation(fullname, false);
+        getManageCustomerAccountPage().clickCustomerTab();
+        getManageCustomerAccountPage().checkCustomerAccount(fullname, false);
     }
 
 }

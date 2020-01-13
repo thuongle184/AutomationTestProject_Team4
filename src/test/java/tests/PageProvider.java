@@ -24,9 +24,9 @@ public class PageProvider {
 
 
     public static OpenAccountPage getOpenAccountPage() {
-        if (openAccountPage == null) {
+        //if (openAccountPage == null) {
             openAccountPage = PageFactory.initElements(TestRunner.driver, OpenAccountPage.class);
-        }
+        //}
         return openAccountPage;
     }
 
@@ -60,9 +60,9 @@ public class PageProvider {
     }
 
     public static ManageCustomerAccountPage getManageCustomerAccountPage(){
-        if (manageCustomerAccountPage == null) {
+        ///if (manageCustomerAccountPage == null) {
             manageCustomerAccountPage = PageFactory.initElements(TestRunner.driver, ManageCustomerAccountPage.class);
-        }
+        //}
         return manageCustomerAccountPage;
     }
 }

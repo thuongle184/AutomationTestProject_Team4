@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -67,5 +68,13 @@ public class CustomerLoginPage {
                 System.out.println("user loggined and is navigated to details information page");
         }
         else System.out.println("user not loggined");
+    }
+
+    public void buttonNotAppear(boolean loginBtnDisplayed) {
+        if (!loginBtnDisplayed) {
+            if (checkLoginButtonIsShown()) Assert.assertEquals(1, 0);
+        } else {
+            if (!checkLoginButtonIsShown()) Assert.assertEquals(1, 0);
+        }
     }
 }

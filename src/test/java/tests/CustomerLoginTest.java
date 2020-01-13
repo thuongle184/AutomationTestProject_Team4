@@ -30,4 +30,10 @@ public class CustomerLoginTest {
         Thread.sleep(3000);
         getCustomerLoginPage().verifyNavigateToDetailPage(customer);
     }
+
+    @Then("^I verify that user can not see login button appears and user login unsuccessfully$")
+    public void verifyButtonNotAppear() throws InterruptedException {
+        Thread.sleep(3000);
+        getCustomerLoginPage().buttonNotAppear(false);
+    }
 }

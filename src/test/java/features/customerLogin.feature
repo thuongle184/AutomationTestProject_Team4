@@ -14,3 +14,11 @@ Feature: Customer Login
     Examples:
       |   username      |   customer  |
       |   Ron Weasly    | Ron Weasly  |
+
+  Scenario Outline: Customer Login Unsuccessfully
+    When  I select username as <username>
+    Then  I verify that user can not see login button appears and user login unsuccessfully
+
+    Examples:
+      |   username      |
+      |---Your Name---  |

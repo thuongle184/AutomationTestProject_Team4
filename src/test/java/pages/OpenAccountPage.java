@@ -61,8 +61,4 @@ public class OpenAccountPage {
         Thread.sleep(1000);
         processBtn.click();
     }
-
-    public void checkUserAccount(){
-
-    }
 }
