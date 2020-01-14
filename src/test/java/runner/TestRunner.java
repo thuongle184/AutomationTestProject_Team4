@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
 @CucumberOptions(
-        features = "src/test/java/features/customerDeposit.feature",
+        features = "src/test/java/features/customerTransaction.feature",
         glue = {"tests"},
         tags = {"~@Ignore"},
         format = {

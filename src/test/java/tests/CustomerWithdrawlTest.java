@@ -7,24 +7,6 @@ import cucumber.api.java.en.When;
 
 public class CustomerWithdrawlTest extends PageProvider{
 
-    @When("^I login successfully with username as (.*)$")
-    public void loginBeforeWithdraw(String usernameSelected) throws InterruptedException {
-        Thread.sleep(2000);
-        getCustomerLoginPage().selectUserName(usernameSelected);
-        getCustomerLoginPage().clickLoginButton();
-        Thread.sleep(5000);
-    }
-
-
-    @When("^I type deposit successfully with deposit as (.*)$")
-    public void alreadyDepositBeforeWithdrawl(String depositAmount) throws Throwable {
-        getCustomerDepositPage().navigateToDepositTab();
-        Thread.sleep(2000);
-        getCustomerDepositPage().typeDepositAmount(depositAmount);
-        Thread.sleep(2000);
-        getCustomerDepositPage().submitDeposit();
-
-    }
 
     @When("^I open withdrawl tab$")
     public void openWithdrawlTab() throws Throwable {
@@ -43,15 +25,15 @@ public class CustomerWithdrawlTest extends PageProvider{
     public void clickWithdrawlSubmitButton() throws InterruptedException {
         Thread.sleep(10000);
         getCustomerWithdrawlPage().submitWithdrawl();
-        getCustomerWithdrawlPage().getDateTime();
+        getCommonPage().getDateTime();
     }
 
     @Then("^I verify that customer withdrawl successfully$")
-    public void verifyWithdrawSuccesfully() throws InterruptedException {
+    public void verifyWithdrawSuccesfully(String withdrawlAmount) throws InterruptedException {
         getCustomerWithdrawlPage().verifyMessageSuccessfully();
         Thread.sleep(5000);
         getTransaction().navigateTransactionTab();
-        getTransaction().verifySuccessfullyAtTransaction(getCustomerDepositPage().getDateTime(),"withdrawl");
+        getTransaction().verifySuccessfullyAtTransaction(getCommonPage().getDateTime(),getCustomerWithdrawlPage().getWithdrawl(withdrawlAmount));
     }
 
     @Then("^I verify that customer withdrawl unsuccessfully$")

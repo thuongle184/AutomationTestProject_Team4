@@ -29,16 +29,16 @@ public class CustomerWithdrawlPage {
         this.withdrawlNumber.sendKeys(withdrawlAmount);
     }
 
+    public String getWithdrawl(String withdrawlAmount){
+        return withdrawlAmount;
+    }
+
+
+
     public void submitWithdrawl() throws InterruptedException {
         withdrawlButton.click();
     }
 
-    public String getDateTime(){
-        LocalDateTime myDateObj = LocalDateTime.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm ");
-        String formattedDate = myDateObj.format(myFormatObj);
-        return formattedDate;
-    }
 
 
     public void verifyMessageSuccessfully() throws InterruptedException {

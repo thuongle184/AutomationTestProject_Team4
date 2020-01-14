@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class CustomerLoginPage {
 
     @FindBy(id = "userSelect")
@@ -24,13 +26,14 @@ public class CustomerLoginPage {
     WebElement welcomeName;
 
     public void selectUserName(String usernameSelected) throws InterruptedException {
+        sleep(5000);
         usernameSelector.click();
 
         List<WebElement> listCustomerName = usernameSelector.findElements(By.tagName("option"));
         for (WebElement customerName : listCustomerName) {
             if (customerName.getText().toLowerCase().equalsIgnoreCase(usernameSelected)) {
                 customerName.click();
-                Thread.sleep(1000);
+                sleep(3000);
                 break;
             }
         }

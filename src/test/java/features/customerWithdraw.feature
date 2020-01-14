@@ -5,9 +5,9 @@ Feature: Customer withdraw
 
   Background:
     Given Open website http://www.way2automation.com/angularjs-protractor/banking/#/customer
+    When I login successfully with username as Ron Weasly
 
   Scenario Outline: Customer Withdrawl Successfully
-    When I login successfully with username as <username>
     And I type deposit successfully with deposit as <deposit>
     When I open withdrawl tab
     When I type withdrawl as <withdrawl>
@@ -15,12 +15,11 @@ Feature: Customer withdraw
     Then I verify that customer withdrawl successfully
 
     Examples:
-      | username   | deposit | withdrawl |
-      | Ron Weasly | 2000    | 1000      |
+     | deposit | withdrawl |
+     | 2000    | 1000      |
 
 
   Scenario Outline: Customer Withdrawl unSuccessfully
-    When I login successfully with username as <username>
     And I type deposit successfully with deposit as <deposit>
     When I open withdrawl tab
     When I type withdrawl as <withdrawl>
@@ -28,5 +27,5 @@ Feature: Customer withdraw
     Then I verify that customer withdrawl unsuccessfully
 
     Examples:
-      | username   | deposit | withdrawl |
-      | Ron Weasly | 1000    | 2000      |
+    | deposit | withdrawl |
+    | 1000    | 2000      |

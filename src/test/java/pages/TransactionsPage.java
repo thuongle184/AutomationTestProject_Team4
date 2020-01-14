@@ -19,33 +19,72 @@ public class TransactionsPage {
     @FindBy(xpath = "//div[2]/div/div[1]/button[2]")
     WebElement buttonReset;
 
+    @FindBy(css = ".logout")
+    WebElement logoutButton;
+
+    @FindBy(css = ".home")
+    WebElement homeButton;
+
+    @FindBy(css = ".fontBig")
+    WebElement welcomeName;
+
     public void navigateTransactionTab() throws InterruptedException {
         transactionTab.click();
         sleep(5000);
     }
 
 
-    public void verifySuccessfullyAtTransaction(String numberDeposit, String messages) throws InterruptedException {
+    public void verifySuccessfullyAtTransaction(String dateTime, String depositAmount) throws InterruptedException {
         List<WebElement> listTr = table.findElements(By.tagName("tr"));
         for (int i = 1; i < listTr.size(); i++) {
             List<WebElement> listTd = listTr.get(i).findElements(By.tagName("td"));
-
-            if (listTd.get(0).getText().contains(numberDeposit) && listTd.get(1).getText().equals(2000)) {
-                System.out.println("Add" + messages + " successfully !!!");
-                break;
+            String tdDateTime = String.valueOf(listTd.get(0).getText());
+            String tdAmount = String.valueOf(listTd.get(1).getText());
+            String tdCheck = String.valueOf(listTd.get(2).getText());
+            if (tdDateTime.contains(dateTime) && tdAmount.equalsIgnoreCase(depositAmount)) {
+                System.out.println("Add data sucessfully !!!!!!!!");
+                if(tdCheck.equalsIgnoreCase("Credit")){
+                    System.out.println("Add Credit successfully !!!");
+                }
+                else
+                    System.out.println("Add Debit successfully !!!");
             }
-            System.out.println("Add" + messages + " successfully !!!");
+            else
+            System.out.println("Add data unsucessfully !!!!!!!!");
         }
     }
 
 
 
-    public void resetTableTransaction(){
+    public void resetTableTransaction() throws InterruptedException {
         buttonReset.click();
+        sleep(3000);
     }
 
-    public void backButtonAtTransaction(){
+    public void verifyBackButtonSuccess(){
+        if (logoutButton.isDisplayed() && homeButton.isDisplayed() && welcomeName.isDisplayed()){
+            System.out.println("Back button navigate correct");
+            System.out.println("Navigate Home Page Successfully!!!");
+        }
+        else {
+            System.out.println("Back button navigate incorrect");
+            System.out.println("Navigate Home Page inSuccessfully!!!");
+        }
+    }
+
+    public void backButtonAtTransaction() throws InterruptedException {
         buttonBack.click();
+        sleep(3000);
+    }
+
+
+    public void verifyResetButtonSuccess(){
+        List<WebElement> listTr = table.findElements(By.tagName("tr"));
+        if(listTr.size() > 1){
+            System.out.println("Reset table unSuccessfully!!!!!!!!!");
+        }
+        else
+            System.out.println("Reset table Successfully!!!!!!!!!");
     }
 
 

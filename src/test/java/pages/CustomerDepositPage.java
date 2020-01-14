@@ -28,20 +28,22 @@ public class CustomerDepositPage {
     }
 
     public void typeDepositAmount(String depositAmount) throws InterruptedException {
+        sleep(5000);
         depositNumber.clear();
         depositNumber.sendKeys(depositAmount);
+
+
     }
+
+    public String getDeposit(String depositAmount){
+        return depositAmount;
+    }
+
 
 
     public void submitDeposit() throws InterruptedException {
         depositButton.click();
-    }
-
-    public String getDateTime(){
-        LocalDateTime myDateObj = LocalDateTime.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm ");
-        String formattedDate = myDateObj.format(myFormatObj);
-        return formattedDate;
+        sleep(2000);
     }
 
 

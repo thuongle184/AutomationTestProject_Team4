@@ -7,13 +7,6 @@ import cucumber.api.java.en.When;
 
 public class CustomerDepositTest extends PageProvider{
 
-    @When("^I login with username as (.*) successfully$")
-    public void loginBeforeDeposit(String usernameSelected) throws InterruptedException {
-        Thread.sleep(2000);
-        getCustomerLoginPage().selectUserName(usernameSelected);
-        getCustomerLoginPage().clickLoginButton();
-    }
-
     @When("^I click deposit tab$")
     public void clickDepositTab() throws InterruptedException {
         Thread.sleep(2000);
@@ -24,21 +17,24 @@ public class CustomerDepositTest extends PageProvider{
     public void chooseDepositAmount(String depositAmount) throws InterruptedException {
         Thread.sleep(2000);
         getCustomerDepositPage().typeDepositAmount(depositAmount);
+
     }
+
 
     @When("^I click deposit submit button$")
     public void clickDepositSubmitButton() throws InterruptedException {
         Thread.sleep(10000);
         getCustomerDepositPage().submitDeposit();
-        getCustomerDepositPage().getDateTime();
+        getCommonPage().getDateTime();
     }
 
-    @Then("^I verify that customer deposit successfully$")
-    public void verifyDepositSuccesfully() throws InterruptedException {
+    @Then("^I verify that customer deposit successfully (.*)$")
+    public void verifyDepositSuccesfully(String depositAmount) throws InterruptedException {
+        Thread.sleep(2000);
         getCustomerDepositPage().verifyMessageSuccessfully();
         Thread.sleep(5000);
         getTransaction().navigateTransactionTab();
-        getTransaction().verifySuccessfullyAtTransaction(getCustomerDepositPage().getDateTime(),"deposit");
+        getTransaction().verifySuccessfullyAtTransaction(getCommonPage().getDateTime(), getCustomerDepositPage().getDeposit(depositAmount));
 
     }
 
