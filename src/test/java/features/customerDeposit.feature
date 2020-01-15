@@ -22,11 +22,11 @@ Feature: Customer Deposit
     When I click deposit tab
     And I type the depsit as <deposit>
     And I click deposit submit button
-    Then I verify that customer deposit successfully as <deposit>
+    Then I verify that customer deposit successfully as <depositAmount>
 
     Examples:
-   | deposit | deposit |
-   | 2000    |2000    |
-   | 3000    |3000    |
+   | deposit | depositAmount |
+   | 2000    |  2000   |
+   | 3000    |  3000   |
 
 

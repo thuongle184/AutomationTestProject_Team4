@@ -12,4 +12,4 @@ Feature: Customer Login
 
       Examples:
         |   username      |   customer  |
-        |   Ron Weasly    | Ron Weasly  |
+        |   Ron Weasly    | Ron Weaslyy  |

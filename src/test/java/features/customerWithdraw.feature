@@ -12,7 +12,7 @@ Feature: Customer withdraw
     When I open withdrawl tab
     When I type withdrawl as <withdrawl>
     And  I click withdrawl submit button
-    Then I verify that customer withdrawl successfully
+    Then I verify that customer withdrawl successfully as <withdrawl>
 
     Examples:
      | deposit | withdrawl |

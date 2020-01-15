@@ -30,4 +30,7 @@ public class CommonTest extends PageProvider{
         getCustomerDepositPage().submitDeposit();
 
     }
+
+
+
 }

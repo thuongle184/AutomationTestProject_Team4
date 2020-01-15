@@ -5,18 +5,19 @@ Feature: Customer Transaction
 
   Background:
     Given Open website http://www.way2automation.com/angularjs-protractor/banking/#/customer
-    When I login successfully with username as Ron Weasly
+    When I login successfully with username as Hermoine Granger
 
-  Scenario Outline: Customer Transaction Successfully
-    When I type deposit successfully with deposit as <deposit>
-    When I click transaction tab
-    Then I verify the data at Transaction correct
-    When I click reset button
-    Then I verify the data transaction reseted
-    When I click back button
-    Then I verify page transaction backed
+    Scenario: Customer Transaction Successfully
+      When I click transaction tab
+      When I click next button
+      Then I verify the table show the next of table
+      When I click top button
+      Then I verify the table show the top of table
+      When I click reset button
+      Then I verify the data transaction reseted
+      When I click back button
+      Then I verify page transaction backed
 
-    Examples:
-    | deposit | withdrawl |
-    | 2000    | 1000      |
+
+
 

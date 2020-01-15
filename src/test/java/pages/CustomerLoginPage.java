@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -40,31 +41,35 @@ public class CustomerLoginPage {
     }
 
     public boolean checkLoginButtonIsShown() {
-        if(loginButton.isDisplayed()){
+        if (loginButton.isDisplayed()) {
             System.out.println("Login button is appeared");
             return true;
-        }
-        else{
+        } else {
             System.out.println("The name is not selected and login button is not appeared");
             return false;
         }
     }
 
     public void clickLoginButton() {
-        if(checkLoginButtonIsShown()){
+        if (checkLoginButtonIsShown()) {
             loginButton.click();
-        }
-        else{
+        } else {
             System.out.println("Element not present");
         }
     }
 
     public void verifyNavigateToDetailPage(String customerNameSelected) {
-        System.out.println(customerNameSelected+"ten");
-        if (logoutButton.isDisplayed() && homeButton.isDisplayed() && welcomeName.isDisplayed()){
-            if (welcomeName.getText().toLowerCase().equalsIgnoreCase(customerNameSelected))
-                System.out.println("user loggined and is navigated to details information page");
+        System.out.println(customerNameSelected + "ten");
+//        if (logoutButton.isDisplayed() && homeButton.isDisplayed() && welcomeName.isDisplayed()){
+//            if (welcomeName.getText().toLowerCase().equalsIgnoreCase(customerNameSelected))
+//                System.out.println("user loggined and is navigated to details information page");
+//        }
+//        else System.out.println("user not loggined");
+        try {
+            Assert.assertEquals(welcomeName.getText(), customerNameSelected,"Ahihi");
+        } catch (Exception e) {
+
         }
-        else System.out.println("user not loggined");
+
     }
 }

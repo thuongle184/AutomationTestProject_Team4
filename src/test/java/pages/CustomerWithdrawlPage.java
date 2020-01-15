@@ -29,10 +29,6 @@ public class CustomerWithdrawlPage {
         this.withdrawlNumber.sendKeys(withdrawlAmount);
     }
 
-    public String getWithdrawl(String withdrawlAmount){
-        return withdrawlAmount;
-    }
-
 
 
     public void submitWithdrawl() throws InterruptedException {

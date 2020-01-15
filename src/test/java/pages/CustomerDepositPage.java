@@ -32,13 +32,7 @@ public class CustomerDepositPage {
         depositNumber.clear();
         depositNumber.sendKeys(depositAmount);
 
-
     }
-
-    public String getDeposit(String depositAmount){
-        return depositAmount;
-    }
-
 
 
     public void submitDeposit() throws InterruptedException {

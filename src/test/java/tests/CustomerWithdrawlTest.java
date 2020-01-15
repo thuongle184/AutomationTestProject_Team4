@@ -28,15 +28,15 @@ public class CustomerWithdrawlTest extends PageProvider{
         getCommonPage().getDateTime();
     }
 
-    @Then("^I verify that customer withdrawl successfully$")
+    @Then("^I verify that customer withdrawl successfully as(.*)$")
     public void verifyWithdrawSuccesfully(String withdrawlAmount) throws InterruptedException {
         getCustomerWithdrawlPage().verifyMessageSuccessfully();
         Thread.sleep(5000);
         getTransaction().navigateTransactionTab();
-        getTransaction().verifySuccessfullyAtTransaction(getCommonPage().getDateTime(),getCustomerWithdrawlPage().getWithdrawl(withdrawlAmount));
+        getCommonPage().verifySuccessfullyAtTransaction(getCommonPage().getDateTime(),getCommonPage().getAmount(withdrawlAmount));
     }
 
-    @Then("^I verify that customer withdrawl unsuccessfully$")
+    @Then("^I verify that customer withdrawl unsuccessfully")
     public void verifyWithdrawunSuccesfully() throws InterruptedException {
         Thread.sleep(3000);
         getCustomerWithdrawlPage().verifyMessageunSuccessfully();
