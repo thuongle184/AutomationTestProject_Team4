@@ -15,7 +15,7 @@ import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 
 @CucumberOptions(
-        features = "src/test/java/features/manageCustomers.feature",
+        features = "src/test/java/features",
         glue = {"tests"},
         tags = {"~@Ignore"},
         format = {
@@ -40,7 +40,6 @@ public class TestRunner {
     @Parameters({"browser", "version", "platform"})
     public void setUpClass(String browser, String version, String platform) throws Exception {
 
-
         if (platform.equals("mac")) {
 //            if (browser.equals("firefox")) {
 //                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "//driver//geckodriver.exe");
@@ -52,10 +51,8 @@ public class TestRunner {
                 if (browser.equals("chromedriver")) {
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
                 driver = new ChromeDriver();
-            }
-
+                }
         }
-
     }
 
     @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
