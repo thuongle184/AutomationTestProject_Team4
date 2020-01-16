@@ -5,18 +5,17 @@ import org.openqa.selenium.support.FindBy;
 
 public class AddCustomerPage {
 
-    @FindBy(xpath = "//div[1]/input")
+    @FindBy(css = "div.form-group:nth-child(1) > input:nth-child(2)")
     WebElement firstname;
 
-    @FindBy(xpath = "//div[2]/input")
+    @FindBy(css = "div.form-group:nth-child(2) > input:nth-child(2)")
     WebElement lastname;
 
-    @FindBy(xpath = "//div[3]/input")
+    @FindBy(css = "div.form-group:nth-child(3) > input:nth-child(2)")
     WebElement postcode;
 
-    @FindBy(xpath = "//form/button")
+    @FindBy(css = "button.btn:nth-child(4)")
     WebElement addCustomerBtn;
-
 
     public void setUserInformation(String firstnameInput, String lastnameInput, String postcodeInput) throws InterruptedException {
         this.firstname.clear();
@@ -37,13 +36,10 @@ public class AddCustomerPage {
             this.postcode.sendKeys(postcodeInput);
             Thread.sleep(2000);
         }
-
     }
 
     public void clickSubmit() {
         addCustomerBtn.click();
     }
-
-
 
 }

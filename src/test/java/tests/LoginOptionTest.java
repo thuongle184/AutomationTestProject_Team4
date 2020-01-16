@@ -9,26 +9,22 @@ public class LoginOptionTest {
 
     @When("^I click customer login button$")
     public void clickCustomerLogin() throws Throwable {
-        Thread.sleep(1000);
         getLoginOptionPage().pressCustomerLoginButton();
     }
 
     @Then("^I verify system navigates to customer login page$")
-    public void verifyCustomerLoginPage() throws Throwable {
-        Thread.sleep(1000);
-        getLoginOptionPage().showCheckCustomerLoginPageResult();
+    public void verifyCustomerLoginPage() throws InterruptedException {
+        getLoginOptionPage().showCheckCustomerLoginPageResult(true);
     }
 
     @When("^I click bank manager login button$")
     public void clickManagerLogin() throws Throwable {
-        Thread.sleep(1000);
         getLoginOptionPage().pressManagerLoginButton();
     }
 
     @Then("^I verify system navigates to manager login page$")
-    public void verifyManagerLoginPage() throws Throwable {
-        Thread.sleep(1000);
-        getLoginOptionPage().showCheckManagerLoginPageResult();
+    public void verifyManagerLoginPage() throws InterruptedException {
+        getLoginOptionPage().showCheckManagerLoginPageResult(true);
     }
 
 }

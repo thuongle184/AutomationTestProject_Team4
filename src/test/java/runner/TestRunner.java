@@ -40,7 +40,6 @@ public class TestRunner {
     @Parameters({"browser", "version", "platform"})
     public void setUpClass(String browser, String version, String platform) throws Exception {
 
-
         if (platform.equals("mac")) {
 //            if (browser.equals("firefox")) {
 //                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "//driver//geckodriver.exe");
@@ -52,10 +51,8 @@ public class TestRunner {
                 if (browser.equals("chromedriver")) {
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
                 driver = new ChromeDriver();
-            }
-
+                }
         }
-
     }
 
     @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
@@ -71,7 +68,7 @@ public class TestRunner {
     @AfterClass(alwaysRun = true)
     public void tearDownClass() throws Exception {
         testNGCucumberRunner.finish();
-        driver.quit();
+//        driver.quit();
     }
 
 

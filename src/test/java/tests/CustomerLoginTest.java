@@ -16,7 +16,7 @@ public class CustomerLoginTest {
     @Then("^I verify that user can see login button appears$")
     public void verifyUsernameSelected() throws InterruptedException {
         Thread.sleep(3000);
-        getCustomerLoginPage().checkLoginButtonIsShown();
+        getCustomerLoginPage().verifyUserCanClickLogin(true);
     }
 
     @When("^I click login button$")
@@ -28,7 +28,7 @@ public class CustomerLoginTest {
     @Then("^I verify that user as (.*) login successfully$")
     public void verifyLoginSuccessfully(String customer) throws InterruptedException {
         Thread.sleep(3000);
-        getCustomerLoginPage().verifyNavigateToDetailPage(customer);
+        getCustomerLoginPage().verifyNavigateToDetailPage(customer, true);
     }
 
     @Then("^I verify that user can not see login button appears and user login unsuccessfully$")
@@ -36,4 +36,5 @@ public class CustomerLoginTest {
         Thread.sleep(3000);
         getCustomerLoginPage().buttonNotAppear(false);
     }
+
 }

@@ -2,33 +2,49 @@ package tests;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import runner.TestRunner;
 
-import static tests.PageProvider.getCommonPage;
-import static tests.PageProvider.getCustomerLoginPage;
+import static java.lang.Thread.sleep;
+import static tests.PageProvider.*;
 
-/**
- * Created by nththuy on 1/3/20.
- */
 public class CommonTest {
-
 
     @Given("Open website (.*)$")
     public void openTargetWebsite(String website) throws InterruptedException {
-        Thread.sleep(7000);
         TestRunner.driver.get(website);
         getCommonPage().checkPageUrl(website);
         TestRunner.driver.manage().window().maximize();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
 
     @Given("^I login successfully with username as (.*)$")
     public void loginBeforeAction(String loginUsername) throws InterruptedException {
         Thread.sleep(7000);
         getCustomerLoginPage().selectUserName(loginUsername);
+        Thread.sleep(5000);
         getCustomerLoginPage().checkLoginButtonIsShown();
         getCustomerLoginPage().clickLoginButton();
-        getCustomerLoginPage().verifyNavigateToDetailPage(loginUsername);
+        getCustomerLoginPage().verifyNavigateToDetailPage(loginUsername, true);
     }
 
+    @Given("^I deposit successfully with deposit as (.*)$")
+    public void alreadyDepositBeforeWithdrawal(String depositAmount) throws Throwable {
+        Thread.sleep(5000);
+        getCustomerDepositPage().navigateToDepositTab();
+        Thread.sleep(3000);
+        getCustomerDepositPage().typeDepositAmount(depositAmount);
+        Thread.sleep(2000);
+        getCustomerDepositPage().submitDeposit();
+        sleep(4000);
+        getCustomerDepositPage().checkDepositStatus(depositAmount, true);
+        sleep(4000);
+        String depositTime = getCustomerDepositPage().returnTime();
+        getTransactionHistoryPage().navigateTransactionTab();
+        sleep(3000);
+        getTransactionHistoryPage().checkTransaction(depositTime, depositAmount, "Deposit", true);
+        sleep(2000);
+        getTransactionHistoryPage().clickButtonBack();
+        sleep(2000);
+    }
 }

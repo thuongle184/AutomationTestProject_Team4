@@ -5,13 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
 import java.util.List;
 
 public class OpenAccountPage {
 
     @FindBy(id = "userSelect")
     WebElement userSelect;
-
 
     @FindBy(xpath = "//div[2]/div/div[1]/button[2]")
     WebElement openAccountTab;
@@ -22,6 +22,7 @@ public class OpenAccountPage {
     @FindBy(xpath = "//div[2]/div/div/form/button")
     WebElement processBtn;
 
+    CommonPage commonPage = new CommonPage();
 
     public void clickOpenAccountTab() {
         openAccountTab.click();
@@ -37,13 +38,8 @@ public class OpenAccountPage {
                 break;
             }
         }
-        if (success) {
-            if (!check) Assert.assertEquals(1, 0);
-        } else {
-            if (check) Assert.assertEquals(1, 0);
-        }
+        commonPage.verifyCondition(check, success);
     }
-
 
     public void getUserName(String usernameInput) throws InterruptedException {
         Select userSelects = new Select(userSelect);
@@ -61,4 +57,5 @@ public class OpenAccountPage {
         Thread.sleep(1000);
         processBtn.click();
     }
+
 }

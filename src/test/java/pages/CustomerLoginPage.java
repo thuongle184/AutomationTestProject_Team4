@@ -18,11 +18,10 @@ public class CustomerLoginPage {
     @FindBy(css = ".logout")
     WebElement logoutButton;
 
-    @FindBy(css = ".home")
-    WebElement homeButton;
-
-    @FindBy(css = ".fontBig")
+    @FindBy(xpath = "//html/body/div[3]/div/div[2]/div/div[1]/strong/span")
     WebElement welcomeName;
+
+    CommonPage commonPage = new CommonPage();
 
     public void selectUserName(String usernameSelected) throws InterruptedException {
         Thread.sleep(5000);
@@ -40,41 +39,35 @@ public class CustomerLoginPage {
     }
 
     public boolean checkLoginButtonIsShown() {
-        if(loginButton.isDisplayed()){
-            return true;
-        }
-        else{
-            System.out.println("The name is not selected and login button is not appeared");
-            return false;
-        }
+        return loginButton.isDisplayed();
+    }
+
+    public void verifyUserCanClickLogin(boolean able) {
+        commonPage.verifyCondition(able, checkLoginButtonIsShown());
     }
 
     public void clickLoginButton() throws InterruptedException {
-        if(checkLoginButtonIsShown()){
-            System.out.println("Login button is appeared");
-            Thread.sleep(3000);
+        if (checkLoginButtonIsShown()) {
+            Thread.sleep(2000);
             loginButton.click();
-        }
-        else{
-            System.out.println("Element not present");
         }
     }
 
-    public void verifyNavigateToDetailPage(String customerNameSelected) throws InterruptedException {
-        System.out.println(customerNameSelected+"ten");
-        if (logoutButton.isDisplayed() && homeButton.isDisplayed() && welcomeName.isDisplayed()){
+    public void verifyNavigateToDetailPage(String customerNameSelected, boolean logged) throws InterruptedException {
+        boolean isLogged = false;
+        Thread.sleep(3000);
+
+        if (logoutButton.isDisplayed() && welcomeName.isDisplayed()) {
             Thread.sleep(3000);
-            if (welcomeName.getText().toLowerCase().equalsIgnoreCase(customerNameSelected))
-                System.out.println("user loggined and is navigated to details information page");
+            if (welcomeName.getText().trim().toLowerCase().equalsIgnoreCase(customerNameSelected))
+                isLogged = true;
         }
-        else System.out.println("user not loggined");
+        commonPage.verifyCondition(logged, isLogged);
     }
 
     public void buttonNotAppear(boolean loginBtnDisplayed) {
-        if (!loginBtnDisplayed) {
-            if (checkLoginButtonIsShown()) Assert.assertEquals(1, 0);
-        } else {
-            if (!checkLoginButtonIsShown()) Assert.assertEquals(1, 0);
-        }
+        commonPage.verifyCondition(loginBtnDisplayed, checkLoginButtonIsShown());
     }
+
+
 }
